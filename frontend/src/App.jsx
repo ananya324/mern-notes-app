@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import AuthPage from "./pages/AuthPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Notes from "./pages/Notes";
@@ -9,7 +10,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={!user ? <Login /> : <Navigate to="/notes" />} />
+      <Route path="/" element={!user ? <AuthPage /> : <Navigate to="/notes" />} />
+      <Route path="/login" element={!user ? <Login /> : <Navigate to="/notes" />} />
       <Route path="/register" element={!user ? <Register /> : <Navigate to="/notes" />} />
       <Route path="/notes" element={user ? <Notes /> : <Navigate to="/" />} />
     </Routes>
