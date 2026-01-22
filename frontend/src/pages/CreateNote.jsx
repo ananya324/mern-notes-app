@@ -22,10 +22,7 @@ function CreateNote({ onNoteCreated }) {
         content,
       });
 
-      // add note instantly to UI
       onNoteCreated(res.data);
-
-      // clear inputs
       setTitle("");
       setContent("");
     } catch (err) {
@@ -37,24 +34,30 @@ function CreateNote({ onNoteCreated }) {
   };
 
   return (
+    
     <form
       onSubmit={createNote}
-      className="bg-white p-4 rounded-xl shadow mb-6"
+      className="bg-gradient-to-br from-white/80 to-purple-100/80 backdrop-blur-lg 
+                 border border-white/50 rounded-2xl shadow-xl p-6 "
     >
-      <h2 className="text-lg font-semibold mb-2">Create a Note</h2>
+      <h2 className="text-xl font-bold text-gray-800 mb-4">
+        ✍️ Create a New Note
+      </h2>
 
       <input
         type="text"
-        placeholder="Title"
-        className="w-full border p-2 rounded mb-2"
+        placeholder="Note title "
+        className="w-full mb-3 px-4 py-2 rounded-xl border border-purple-300 
+                   focus:outline-none focus:ring-2 focus:ring-purple-400"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
       <textarea
-        placeholder="Write your note here..."
+        placeholder="Write your thoughts here 💭"
         rows="4"
-        className="w-full border p-2 rounded mb-3"
+        className="w-full mb-4 px-4 py-2 rounded-xl border border-purple-300 
+                   focus:outline-none focus:ring-2 focus:ring-purple-400 resize-none"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
@@ -62,13 +65,14 @@ function CreateNote({ onNoteCreated }) {
       <button
         type="submit"
         disabled={loading}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+        className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 
+                   text-white font-semibold py-2 rounded-xl shadow-md
+                   hover:opacity-90 transition disabled:opacity-50"
       >
-        {loading ? "Saving..." : "Add Note"}
+        {loading ? "💾 Saving..." : "➕ Add Note"}
       </button>
     </form>
   );
 }
 
 export default CreateNote;
-
