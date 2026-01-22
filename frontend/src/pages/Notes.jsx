@@ -41,11 +41,11 @@ function Notes() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 p-6">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">
-          Hello, {user?.name} 👋
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-extrabold text-gray-800">
+          Hello, {user?.name} ✨
         </h1>
         <LogoutButton />
       </div>
@@ -54,53 +54,61 @@ function Notes() {
       <CreateNote onNoteCreated={addNoteToState} />
 
       {/* Notes Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         {notes.map((note) => (
           <div
             key={note._id}
-            className="bg-white rounded-xl shadow p-4"
+            className="backdrop-blur-lg bg-white/70 border border-white/40 rounded-2xl shadow-lg p-5 transition hover:scale-[1.02]"
           >
             {editingId === note._id ? (
               <>
                 <input
-                  className="w-full border p-2 rounded mb-2"
+                  className="w-full border border-purple-300 p-2 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-purple-400"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
+
                 <textarea
-                  className="w-full border p-2 rounded mb-2"
+                  className="w-full border border-purple-300 p-2 rounded-lg mb-3 focus:outline-none focus:ring-2 focus:ring-purple-400"
                   rows="4"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                 />
+
                 <button
                   onClick={() => handleUpdate(note._id)}
-                  className="bg-green-500 text-white px-3 py-1 rounded mr-2"
+                  className="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-4 py-2 rounded-lg shadow hover:opacity-90"
                 >
-                  Save
+                  💾 Save
                 </button>
               </>
             ) : (
               <>
-                <h3 className="font-semibold text-lg">{note.title}</h3>
-                <p className="text-gray-600 mt-2">{note.content}</p>
+                <h3 className="font-bold text-xl text-gray-800">
+                  {note.title}
+                </h3>
 
-                <div className="flex gap-2 mt-4">
+                <p className="text-gray-700 mt-2 line-clamp-4">
+                  {note.content}
+                </p>
+
+                <div className="flex gap-4 mt-5">
                   <button
                     onClick={() => {
                       setEditingId(note._id);
                       setTitle(note.title);
                       setContent(note.content);
                     }}
-                    className="text-blue-500"
+                    className="text-indigo-600 font-medium hover:underline"
                   >
-                    Edit
+                    ✏️ Edit
                   </button>
+
                   <button
                     onClick={() => handleDelete(note._id)}
-                    className="text-red-500"
+                    className="text-rose-600 font-medium hover:underline"
                   >
-                    Delete
+                    🗑️ Delete
                   </button>
                 </div>
               </>
