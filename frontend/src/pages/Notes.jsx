@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 import CreateNote from "./CreateNote";
-import LogoutButton from "../components/LogoutButton";
+import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 
 function Notes() {
@@ -41,14 +41,9 @@ function Notes() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-purple-200 to-pink-200 p-6">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-extrabold text-gray-800">
-          Hello, {user?.name} ✨
-        </h1>
-        <LogoutButton />
-      </div>
+  
+ <div className="min-h-screen bg-violet-200 from-indigo-200 via-purple-200 to-pink-200 p-6">
+  <Navbar />
 
       {/* Create Note */}
       <CreateNote onNoteCreated={addNoteToState} />
@@ -101,14 +96,14 @@ function Notes() {
                     }}
                     className="text-indigo-600 font-medium hover:underline"
                   >
-                    ✏️ Edit
+                     Edit
                   </button>
 
                   <button
                     onClick={() => handleDelete(note._id)}
                     className="text-rose-600 font-medium hover:underline"
                   >
-                    🗑️ Delete
+                     Delete
                   </button>
                 </div>
               </>
